@@ -1129,12 +1129,16 @@ function stopCipher() { clearInterval(cipherTimer); $('#brief-body').classList.r
 
 function briefingLines() {
   const n = codeLen();
+  const words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+  const a = [8, 11, 18].includes(n) ? 'an' : 'a';
   const lines = [
     `Good morning, ${agentsLabel()}.`,
-    `Your mission, should you choose to accept it: break into the Academy vault.`,
-    `The vault is sealed with a ${n}-digit code. ${n} clues are hidden in the field, and each one reveals a single digit. Clue 1 is the first digit, Clue 2 the second, and so on.`,
-    `HQ will verify ONE digit for you over a secure line. You get three attempts at it. Choose wisely.`,
-    `When you enter the full code, the vault scans it. Get at least half the digits right and HQ will flag the wrong ones in red. Fewer than half, and you're on your own.`,
+    `Your mission, should you choose to accept it:`,
+    `Break into the Academy vault.`,
+    `The vault is sealed with ${a} ${n}-digit code. HQ will give you ${n} clues, and each one reveals a single digit. Clue 1 is the first digit, Clue 2 the second, and so on.`,
+    `The clues are in marked envelopes. Please solve every clue in order. Only open a new envelope after you've attempted to solve the previous one. In addition to vault code clues, you'll also receive a number of wayfinding clues to help direct you along the way. Once you've got your ${words[n] || n} codes, please return to HQ.`,
+    `If you are in doubt about any of the vault code digits, HQ will verify ONE digit for you over a secure line through this app. You get three attempts at it. Choose wisely.`,
+    `After you've entered the full code, the vault scans it. Get at least half the digits right and HQ will flag the wrong ones in red. Fewer than half, and you're on your own.`,
   ];
   if (cfg.lockoutBase > 0) lines.push(`Every wrong code triggers a security lockdown, and each one lasts longer than the last. Think before you punch.`);
   lines.push(`As always, should you be caught, the Academy will deny all knowledge of your actions.`, `Good luck, agents.`);
